@@ -18,15 +18,18 @@ public class EventsService {
     EventsRepository eventsRepository;
 
     public List<Event> fetchAllEvents() {
-        List<Event> resultList = new ArrayList();
+        List<Event> resultList = new ArrayList<>();
         Iterable<Event> result = eventsRepository.findAll();
         result.forEach(resultList::add);
         return resultList;
     }
 
-    private ZonedDateTime parseDate(String millis) {
-        return Instant.ofEpochMilli(Long.valueOf(millis))
-                .atZone( ZoneId.of("UTC"));
+    public List<Event> fetchEventsByOwnerId(Long ownerId) {
+        return eventsRepository.findByOwnerId(ownerId);
     }
 
+    private ZonedDateTime parseDate(String millis) {
+        return Instant.ofEpochMilli(Long.parseLong(millis))
+                .atZone( ZoneId.of("UTC"));
+    }
 }
