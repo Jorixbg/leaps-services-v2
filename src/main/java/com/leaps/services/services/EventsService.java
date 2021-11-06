@@ -29,7 +29,7 @@ public class EventsService {
     }
 
     private ZonedDateTime parseDate(String millis) {
-        return Instant.ofEpochMilli(Long.parseLong(millis))
+        return Instant.ofEpochMilli(Long.valueOf(millis))
                 .atZone( ZoneId.of("UTC"));
     }
 }
