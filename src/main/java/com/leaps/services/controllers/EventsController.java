@@ -3,10 +3,7 @@ package com.leaps.services.controllers;
 import com.leaps.services.entities.Event;
 import com.leaps.services.services.EventsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,6 +17,11 @@ public class EventsController {
     @GetMapping(produces = "application/json")
     public List<Event> fetchAllEvents() {
         return eventsService.fetchAllEvents();
+    }
+
+    @PostMapping(produces = "application/json")
+    public Long createEvent(Event event) {
+        return eventsService.createEvent(event);
     }
 
     @GetMapping(value = "/{ownerId}", produces = "application/json")
